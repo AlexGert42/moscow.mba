@@ -40,12 +40,12 @@ const ProgramsModules = ({ program, smallerMb = false }) => {
               'specializedlAcademicDisciplines'
                 ? 'профильных дисциплин'
                 : program.programModulesCounters?.leftCounter ===
-                  'academicDisciplines'
-                ? 'дисциплин'
-                : program.programModulesCounters?.leftCounter ===
+                'academicDisciplines'
+                  ? 'дисциплин'
+                  : program.programModulesCounters?.leftCounter ===
                   'generalAcademicDisciplines'
-                ? 'дисциплин базовой части'
-                : 'дисциплин'}
+                    ? 'дисциплин базовой части'
+                    : 'дисциплин'}
             </p>
           </li>
           <li className={stls.redItem}>
@@ -57,7 +57,7 @@ const ProgramsModules = ({ program, smallerMb = false }) => {
                 <p className={stls.p}>Практика и защита дипломной работы</p>
               </>
             ) : program.programModulesCounters?.rightCounter ===
-              'specializedlAcademicDisciplines' ? (
+            'specializedlAcademicDisciplines' ? (
               <>
                 <div className={stls.number}>
                   {program.specializedSubjects.length}
@@ -65,7 +65,7 @@ const ProgramsModules = ({ program, smallerMb = false }) => {
                 <p className={stls.p}>дисциплин специализации</p>
               </>
             ) : program.programModulesCounters?.rightCounter ===
-              'practiceAndExam' ? (
+            'practiceAndExam' ? (
               <>
                 <div className={stls.number}>
                   <IconCheckCircleAltDim />
@@ -78,11 +78,14 @@ const ProgramsModules = ({ program, smallerMb = false }) => {
           </li>
         </ul>
       </div>
+      {
+        program && program.baseSubjects?.length > 0 && !at.executive && !at.profession && !at.course &&
+        <div className={stls.pl}>
+          <h3 className={stls.h3}>Базовые дисциплины</h3>
+        </div>
+      }
       {program && program.baseSubjects?.length > 0 && !at.executive && (
         <div className={stls.list}>
-          {program && program.baseSubjects?.length > 0 && !at.executive && !at.profession && !at.course &&
-          <h3 className={stls.h3}>Базовые дисциплины</h3>
-            }
           {programModulesBase.map((module, idx) => (
             <ProgramsModule
               key={module.id}
@@ -100,13 +103,12 @@ const ProgramsModules = ({ program, smallerMb = false }) => {
           ))}
         </div>
       )}
-
+      {program && program.specializedSubjects?.length > 0 && !at.profession && !at.course && (
+        <div className={stls.pl}>
+          <h3 className={stls.h3}>Специализированные дисциплины</h3>
+        </div>
+      )}
       <div className={stls.list}>
-        {program && program.specializedSubjects?.length > 0 && !at.profession && !at.course &&  (
-          <div className={stls.pl}>
-            <h3 className={stls.h3}>Специализированные дисциплины</h3>
-          </div>
-        )}
         {program.specializedSubjects?.length > 0 && (
           <>
             {programModulesSpecialty.map((module, idx) => (
@@ -179,7 +181,7 @@ const ProgramsModules = ({ program, smallerMb = false }) => {
               ]}
             />
           ) : program.subjectsStickerType ===
-            'practiceModulesAndFinalAttestation' ? (
+          'practiceModulesAndFinalAttestation' ? (
             <Stickers>
               <Sticker
                 type={'short'}
