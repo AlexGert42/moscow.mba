@@ -22,7 +22,7 @@ const Sticker = ({
                 className={`${stls.item} ${
                   listItems.length > 1 ? stls.many : ''
                 }`}>
-                <p>{item}</p>
+                <p>{item.replace(/[()]/g, '')}</p>
               </li>
             ))}
           </ul>
